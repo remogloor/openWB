@@ -27,7 +27,21 @@ then
 else
 	train=$releasetrain
 fi
+
+sudo git fetch origin
+sudo git fetch mine
+sudo git checkout $train
 sudo git reset --hard origin/$train
+sudo git merge --no-commit mine/updatemine
+if [[ "$?" == "0" ]]
+then
+	sudo git merge --abort
+	sudo git merge mine/updatemine - m "merged updatemine"
+else
+	sudo git merge --abort
+fi
+mergeMine.sh
+
 cd /var/www/html/
 sudo chown -R pi:pi openWB 
 sudo chown -R www-data:www-data /var/www/html/openWB/web/backup
