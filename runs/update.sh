@@ -36,7 +36,7 @@ sudo git merge --no-commit mine/updatemine
 if [ $? -eq 0 ]
 then
 	sudo git merge --abort
-	sudo git merge mine/updatemine - m "merged updatemine"
+	sudo git merge mine/updatemine -m "merged updatemine"
 else
 	sudo git merge --abort
 fi
