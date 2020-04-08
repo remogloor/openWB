@@ -40,6 +40,8 @@ then
 else
 	sudo git merge --abort
 fi
+sudo chmod 755 /var/www/html/openWB/runs/mergeMine.sh
+sudo chown pi:pi /var/www/html/openWB/runs/mergeMine.sh
 /var/www/html/openWB/runs/mergeMine.sh
 
 cd /var/www/html/
