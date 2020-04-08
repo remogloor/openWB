@@ -40,7 +40,7 @@ then
 else
 	sudo git merge --abort
 fi
-mergeMine.sh
+/var/www/html/openWB/runs/mergeMine.sh
 
 cd /var/www/html/
 sudo chown -R pi:pi openWB 
