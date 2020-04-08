@@ -33,7 +33,7 @@ sudo git fetch mine
 sudo git checkout $train
 sudo git reset --hard origin/$train
 sudo git merge --no-commit mine/updatemine
-if [[ "$?" == "0" ]]
+if [ $? -eq 0 ]
 then
 	sudo git merge --abort
 	sudo git merge mine/updatemine - m "merged updatemine"
