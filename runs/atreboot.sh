@@ -6,6 +6,7 @@ sleep 5
 sudo chown -R www-data:www-data /var/www/html/openWB/web/backup
 sudo chown -R www-data:www-data /var/www/html/openWB/web/tools/upload
 sudo chmod 777 /var/www/html/openWB/openwb.conf
+sudo chmod 777 /var/www/html/openWB/smarthome.ini
 sudo chmod 777 /var/www/html/openWB/ramdisk
 sudo chmod 777 /var/www/html/openWB/ramdisk/
 sudo chmod 777 /var/www/html/openWB/web/files/*
@@ -13,6 +14,15 @@ sudo chmod -R +x /var/www/html/openWB/modules/*
 sudo chmod -R 777 /var/www/html/openWB/modules/soc_i3
 sudo chmod -R 777 /var/www/html/openWB/modules/soc_i3s1
 echo 1 > /var/www/html/openWB/ramdisk/bootinprogress
+echo 0 > /var/www/html/openWB/ramdisk/nurpv70dynstatus
+echo 0 > /var/www/html/openWB/ramdisk/lp1phasen
+echo 0 > /var/www/html/openWB/ramdisk/lp2phasen
+echo 0 > /var/www/html/openWB/ramdisk/lp3phasen
+echo 0 > /var/www/html/openWB/ramdisk/lp4phasen
+echo 0 > /var/www/html/openWB/ramdisk/lp5phasen
+echo 0 > /var/www/html/openWB/ramdisk/lp6phasen
+echo 0 > /var/www/html/openWB/ramdisk/lp7phasen
+echo 0 > /var/www/html/openWB/ramdisk/lp8phasen
 echo 0 > /var/www/html/openWB/ramdisk/rfidlist
 echo 0 > /var/www/html/openWB/ramdisk/AllowedTotalCurrentPerPhase
 echo 0 > /var/www/html/openWB/ramdisk/ChargingVehiclesOnL1
@@ -26,10 +36,26 @@ echo 0 > /var/www/html/openWB/ramdisk/ipaddress
 echo 0 > /var/www/html/openWB/ramdisk/awattarprice
 echo 1 > /var/www/html/openWB/ramdisk/mqttawattarprice
 echo 0 > /var/www/html/openWB/ramdisk/awattarmaxprice
-echo 0 > /var/www/html/openWB/ramdisk/mqttawattarmaxprice
+echo 1 > /var/www/html/openWB/ramdisk/mqttawattarmaxprice
 echo 1 > /var/www/html/openWB/ramdisk/mqtt.log
-echo 2 > /var/www/html/openWB/ramdisk/mqttsoc1
+echo 1 > /var/www/html/openWB/ramdisk/mqttsoc1
 echo 1 > /var/www/html/openWB/ramdisk/lp1enabled
+echo 0 > /var/www/html/openWB/ramdisk/device1_wh
+echo 0 > /var/www/html/openWB/ramdisk/device2_wh
+echo 0 > /var/www/html/openWB/ramdisk/device3_wh
+echo 0 > /var/www/html/openWB/ramdisk/device4_wh
+echo 0 > /var/www/html/openWB/ramdisk/device5_wh
+echo 0 > /var/www/html/openWB/ramdisk/device6_wh
+echo 0 > /var/www/html/openWB/ramdisk/device7_wh
+echo 0 > /var/www/html/openWB/ramdisk/device8_wh
+echo 0 > /var/www/html/openWB/ramdisk/device9_wh
+echo 0 > /var/www/html/openWB/ramdisk/device10_wh
+echo 0 > /var/www/html/openWB/ramdisk/device1_temp0
+echo 0 > /var/www/html/openWB/ramdisk/device1_temp1
+echo 0 > /var/www/html/openWB/ramdisk/device1_temp2
+echo 0 > /var/www/html/openWB/ramdisk/device2_temp0
+echo 0 > /var/www/html/openWB/ramdisk/device2_temp1
+echo 0 > /var/www/html/openWB/ramdisk/device2_temp2
 echo 1 > /var/www/html/openWB/ramdisk/lp2enabled
 echo 1 > /var/www/html/openWB/ramdisk/lp3enabled
 echo 1 > /var/www/html/openWB/ramdisk/lp4enabled
@@ -120,8 +146,8 @@ echo 0 > /var/www/html/openWB/ramdisk/mqttlastchargestat
 echo 0 > /var/www/html/openWB/ramdisk/mqttlastchargestats1
 echo 0 > /var/www/html/openWB/ramdisk/mqttlastplugstats1
 echo 0 > /var/www/html/openWB/ramdisk/mqttspeichervorhanden
-echo 0 > /var/www/html/openWB/ramdisk/mqttspeichersoc
-echo 0 > /var/www/html/openWB/ramdisk/mqttspeicherleistung
+echo 3 > /var/www/html/openWB/ramdisk/mqttspeichersoc
+echo 2 > /var/www/html/openWB/ramdisk/mqttspeicherleistung
 echo 0 > /var/www/html/openWB/ramdisk/mqttladeleistungs1
 echo 0 > /var/www/html/openWB/ramdisk/mqttladeleistungs2
 echo 0 > /var/www/html/openWB/ramdisk/mqttladeleistunglp1
@@ -141,22 +167,31 @@ echo 0 > /var/www/html/openWB/ramdisk/autolockconfiguredlp5
 echo 0 > /var/www/html/openWB/ramdisk/autolockconfiguredlp6
 echo 0 > /var/www/html/openWB/ramdisk/autolockconfiguredlp7
 echo 0 > /var/www/html/openWB/ramdisk/autolockconfiguredlp8
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp1
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp2
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp3
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp4
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp5
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp6
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp7
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp8
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp1
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp2
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp3
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp4
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp5
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp6
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp7
-echo 0 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp8
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp1
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp2
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp3
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp4
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp5
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp6
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp7
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockstatuslp8
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp1
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp2
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp3
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp4
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp5
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp6
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp7
+echo 1 > /var/www/html/openWB/ramdisk/mqttautolockconfiguredlp8
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_1
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_2
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_3
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_4
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_5
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_6
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_7
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_8
+echo 0 > /var/www/html/openWB/ramdisk/smarthome_device_manual_9
 touch /var/www/html/openWB/ramdisk/wattbezug
 echo 10 > /var/www/html/openWB/ramdisk/lp1sofortll
 echo 10 > /var/www/html/openWB/ramdisk/lp2sofortll
@@ -172,8 +207,8 @@ echo 0 > /var/www/html/openWB/ramdisk/hook2akt
 echo 0 > /var/www/html/openWB/ramdisk/hook3akt
 echo 0 > /var/www/html/openWB/ramdisk/urcounter
 echo 0 > /var/www/html/openWB/ramdisk/uhcounter
-echo 0 > /var/www/html/openWB/ramdisk/mqttllsolls1
-echo 0 > /var/www/html/openWB/ramdisk/mqttllsolls2
+echo 1 > /var/www/html/openWB/ramdisk/mqttllsolls1
+echo 1 > /var/www/html/openWB/ramdisk/mqttllsolls2
 echo 0 > /var/www/html/openWB/ramdisk/lla1lp4
 echo 0 > /var/www/html/openWB/ramdisk/lla2lp4
 echo 0 > /var/www/html/openWB/ramdisk/lla3lp4
@@ -291,7 +326,7 @@ touch /var/www/html/openWB/ramdisk/yearly_pvkwhk2
 echo 0 > /var/www/html/openWB/ramdisk/yearly_pvkwhk2
 # SoC Speicher am WR 1
 touch /var/www/html/openWB/ramdisk/speichersoc
-echo 0 > /var/www/html/openWB/ramdisk/speichersoc
+echo 4 > /var/www/html/openWB/ramdisk/speichersoc
 # SoC Speicher am WR 2
 touch /var/www/html/openWB/ramdisk/speichersoc2
 echo 0 > /var/www/html/openWB/ramdisk/speichersoc2
@@ -465,8 +500,6 @@ echo 0 > /var/www/html/openWB/ramdisk/soc1vorhanden
 echo 0 > /var/www/html/openWB/ramdisk/lla1
 echo 0 > /var/www/html/openWB/ramdisk/lla2
 echo 0 > /var/www/html/openWB/ramdisk/lla3
-echo 0 > /var/www/html/openWB/ramdisk/llaktuells1
-echo 0 > /var/www/html/openWB/ramdisk/llaktuells2
 touch /var/www/html/openWB/ramdisk/llog1
 touch /var/www/html/openWB/ramdisk/llogs1
 touch /var/www/html/openWB/ramdisk/llogs2
@@ -853,18 +886,29 @@ if ! grep -Fq "msmoduslp2=" /var/www/html/openWB/openwb.conf
 then
 	  echo "msmoduslp2=0" >> /var/www/html/openWB/openwb.conf
 fi
+if ! grep -Fq "stopchargepvatpercentlp1=" /var/www/html/openWB/openwb.conf
+then
+	echo "stopchargepvatpercentlp1=0" >> /var/www/html/openWB/openwb.conf
+	echo "stopchargepvatpercentlp2=0" >> /var/www/html/openWB/openwb.conf
+	echo "stopchargepvpercentagelp1=90" >> /var/www/html/openWB/openwb.conf
+	echo "stopchargepvpercentagelp2=90" >> /var/www/html/openWB/openwb.conf
 
+fi
+if ! grep -Fq "msmoduslp3=" /var/www/html/openWB/openwb.conf
+then
+	echo "msmoduslp3=0" >> /var/www/html/openWB/openwb.conf
+	echo "msmoduslp4=0" >> /var/www/html/openWB/openwb.conf
+	echo "msmoduslp5=0" >> /var/www/html/openWB/openwb.conf
+	echo "msmoduslp6=0" >> /var/www/html/openWB/openwb.conf
+	echo "msmoduslp7=0" >> /var/www/html/openWB/openwb.conf
+	echo "msmoduslp8=0" >> /var/www/html/openWB/openwb.conf
+
+fi
 if ! grep -Fq "nachtladenbisuhrs1=" /var/www/html/openWB/openwb.conf
 then
 	  echo "nachtladenbisuhrs1=6" >> /var/www/html/openWB/openwb.conf
 fi
-if [ ! -e /var/www/html/openWB/web/ladelog ]; then
-	sudo touch /var/www/html/openWB/web/ladelog
-	sudo echo Start > /var/www/html/openWB/web/ladelog
 
-	sudo chmod 777 /var/www/html/openWB/web/ladelog
-fi
-	sudo chmod 777 /var/www/html/openWB/web/ladelog
 if ! grep -Fq "leafusername=" /var/www/html/openWB/openwb.conf
 then
 	  echo "leafusername=username" >> /var/www/html/openWB/openwb.conf
@@ -1612,7 +1656,12 @@ if ! grep -Fq "verbraucher3_urlh=" /var/www/html/openWB/openwb.conf
 then
 	  echo "verbraucher3_urlh='http://url'" >> /var/www/html/openWB/openwb.conf
 fi
+if ! grep -Fq "nurpv70dynact=" /var/www/html/openWB/openwb.conf
+then
+	echo "nurpv70dynact=0" >> /var/www/html/openWB/openwb.conf
+	echo "nurpv70dynw=6000" >> /var/www/html/openWB/openwb.conf
 
+fi
 
 if ! grep -Fq "nlakt_sofort=" /var/www/html/openWB/openwb.conf
 then
@@ -1650,9 +1699,9 @@ if ! grep -Fq "soc_teslalp2_username=" /var/www/html/openWB/openwb.conf
 then
 	  echo "soc_teslalp2_username=deine@email.com" >> /var/www/html/openWB/openwb.conf
 fi
-if ! grep -Fq "soc_tesla_carnumber=" /var/www/html/openWB/openwb.conf
+if ! grep -Fq "soc_teslalp2_carnumber=" /var/www/html/openWB/openwb.conf
 then
-	  echo "soc_tesla_carnumber=0" >> /var/www/html/openWB/openwb.conf
+	  echo "soc_teslalp2_carnumber=0" >> /var/www/html/openWB/openwb.conf
 fi
 if ! grep -Fq "soc_teslalp2_password=" /var/www/html/openWB/openwb.conf
 then
@@ -1820,6 +1869,20 @@ if ! grep -Fq "sunnyislandip=" /var/www/html/openWB/openwb.conf
 then
 	  echo "sunnyislandip=192.168.0.17" >> /var/www/html/openWB/openwb.conf
 fi
+if ! grep -Fq "bezug1_ip=" /var/www/html/openWB/openwb.conf
+then
+	echo "bezug1_ip=192.168.0.17" >> /var/www/html/openWB/openwb.conf
+	echo "pv1_ipa=192.168.0.17" >> /var/www/html/openWB/openwb.conf
+	echo "pv1_ipb=192.168.0.17" >> /var/www/html/openWB/openwb.conf
+	echo "pv1_ipc=192.168.0.17" >> /var/www/html/openWB/openwb.conf
+	echo "pv1_ipd=192.168.0.17" >> /var/www/html/openWB/openwb.conf
+	echo "pv1_ida=1" >> /var/www/html/openWB/openwb.conf
+	echo "pv1_idb=1" >> /var/www/html/openWB/openwb.conf
+	echo "pv1_idc=1" >> /var/www/html/openWB/openwb.conf
+	echo "pv1_idd=1" >> /var/www/html/openWB/openwb.conf
+	echo "speicher1_ip=192.168.0.17" >> /var/www/html/openWB/openwb.conf
+
+fi
 if ! grep -Fq "fsm63a3modbusllsource=" /var/www/html/openWB/openwb.conf
 then
 	  echo "fsm63a3modbusllsource=/dev/ttyUSB2" >> /var/www/html/openWB/openwb.conf
@@ -1843,6 +1906,10 @@ fi
 if ! grep -Fq "wakeupmyrenaultlp2=" /var/www/html/openWB/openwb.conf
 then
 	echo "wakeupmyrenaultlp2=0" >> /var/www/html/openWB/openwb.conf
+fi
+if ! grep -Fq "awattarlocation=" /var/www/html/openWB/openwb.conf
+then
+	echo "awattarlocation=de" >> /var/www/html/openWB/openwb.conf
 fi
 if ! grep -Fq "awattaraktiv=" /var/www/html/openWB/openwb.conf
 then
@@ -2436,6 +2503,18 @@ if ! grep -Fq "slavemode=" /var/www/html/openWB/openwb.conf
 then
 	echo "slavemode=0" >> /var/www/html/openWB/openwb.conf
 fi
+if ! grep -Fq "slaveModeUseLastChargingPhase=" /var/www/html/openWB/openwb.conf
+then
+	echo "slaveModeUseLastChargingPhase=1" >> /var/www/html/openWB/openwb.conf
+fi
+if ! grep -Fq "slaveModeSlowRamping=" /var/www/html/openWB/openwb.conf
+then
+	echo "slaveModeSlowRamping=1" >> /var/www/html/openWB/openwb.conf
+fi
+if ! grep -Fq "slaveModeMinimumAdjustmentInterval=" /var/www/html/openWB/openwb.conf
+then
+	echo "slaveModeMinimumAdjustmentInterval=15" >> /var/www/html/openWB/openwb.conf
+fi
 if ! grep -Fq "solarworld_emanagerip=" /var/www/html/openWB/openwb.conf
 then
 	echo "solarworld_emanagerip=192.192.192.192" >> /var/www/html/openWB/openwb.conf
@@ -2447,10 +2526,13 @@ fi
 if ! grep -Fq "pv2wattmodul=" /var/www/html/openWB/openwb.conf
 then
 	echo "pv2wattmodul=none" >> /var/www/html/openWB/openwb.conf
-	echo "pv2wattip=none" >> /var/www/html/openWB/openwb.conf
-	echo "pv2wattid=none" >> /var/www/html/openWB/openwb.conf
-	echo "pv2wattuser=none" >> /var/www/html/openWB/openwb.conf
-	echo "pv2wattpass=none" >> /var/www/html/openWB/openwb.conf
+fi
+if ! grep -Fq "pv2ip=" /var/www/html/openWB/openwb.conf
+then
+	echo "pv2ip=none" >> /var/www/html/openWB/openwb.conf
+	echo "pv2id=none" >> /var/www/html/openWB/openwb.conf
+	echo "pv2user=none" >> /var/www/html/openWB/openwb.conf
+	echo "pv2pass=none" >> /var/www/html/openWB/openwb.conf
 
 
 fi
@@ -2462,7 +2544,17 @@ then
 	echo "soc_bluelink_interval=30" >> /var/www/html/openWB/openwb.conf
 
 fi
-
+if ! grep -Fq "soclp1_vin=" /var/www/html/openWB/openwb.conf
+then
+	echo "soclp1_vin=none" >> /var/www/html/openWB/openwb.conf
+fi
+sudo kill $(ps aux |grep '[s]marthomehandler.py' | awk '{print $2}')
+if ps ax |grep -v grep |grep "python3 /var/www/html/openWB/runs/smarthomehandler.py" > /dev/null
+then
+	echo "test" > /dev/null
+else
+	python3 /var/www/html/openWB/runs/smarthomehandler.py &
+fi
 sudo kill $(ps aux |grep '[m]qttsub.py' | awk '{print $2}')
 if ps ax |grep -v grep |grep "python3 /var/www/html/openWB/runs/mqttsub.py" > /dev/null
 then
@@ -2489,9 +2581,9 @@ fi
 ethstate=$(</sys/class/net/eth0/carrier)
 if (( ethstate == 1 )); then
 	sudo ifconfig eth0:0 192.168.193.5 netmask 255.255.255.0 up
+else
+	sudo ifconfig wlan0:0 192.168.193.6 netmask 255.255.255.0 up
 fi
-sudo ifconfig wlan0:0 192.168.193.6 netmask 255.255.255.0 up
-
 
 if  grep -Fxq "AllowOverride" /etc/apache2/sites-available/000-default.conf
 then
@@ -2576,14 +2668,27 @@ ip route get 1 | awk '{print $NF;exit}' > /var/www/html/openWB/ramdisk/ipaddress
 curl -s https://raw.githubusercontent.com/snaptec/openWB/master/web/version > /var/www/html/openWB/ramdisk/vnightly
 curl -s https://raw.githubusercontent.com/snaptec/openWB/beta/web/version > /var/www/html/openWB/ramdisk/vbeta
 curl -s https://raw.githubusercontent.com/snaptec/openWB/stable/web/version > /var/www/html/openWB/ramdisk/vstable
+sudo git -C /var/www/html/openWB show --pretty='format:%ci [%h]' | head -n1 > /var/www/html/openWB/web/lastcommit
+for i in $(seq 1 9);
+do
+	configured=$(timeout 2 mosquitto_sub -C 1 -t openWB/config/get/SmartHome/Devices/$i/device_configured)
+	if ! [[ "$configured" == 0 || "$configured" == 1 ]]; then
+		mosquitto_pub -r -t openWB/config/get/SmartHome/Devices/$i/device_configured -m "0"
+	fi
+done
+mosquitto_pub -r -t openWB/global/awattar/pricelist -m " "
+mosquitto_pub -r -t openWB/graph/boolDisplayLiveGraph -m "1"
 mosquitto_pub -t openWB/strLastmanagementActive -r -m " "
 mosquitto_pub -t openWB/lp/1/W -r -m "0"
 mosquitto_pub -t openWB/lp/2/W -r -m "0"
 mosquitto_pub -t openWB/lp/3/W -r -m "0"
 mosquitto_pub -t openWB/lp/1/boolChargePointConfigured -r -m "1"
+rm -rf /var/www/html/openWB/web/themes/dark19_01
 (sleep 10; mosquitto_pub -t openWB/set/ChargeMode -r -m $bootmodus) &
 (sleep 10; mosquitto_pub -t openWB/global/ChargeMode -r -m $bootmodus) &
 echo " " > /var/www/html/openWB/ramdisk/lastregelungaktiv
 chmod 777 /var/www/html/openWB/ramdisk/lastregelungaktiv
+chmod 777 /var/www/html/openWB/ramdisk/smarthome.log
+chmod 777 /var/www/html/openWB/ramdisk/smarthomehandlerloglevel
 echo 0 > /var/www/html/openWB/ramdisk/bootinprogress
 echo 0 > /var/www/html/openWB/ramdisk/updateinprogress
