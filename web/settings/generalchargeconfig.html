@@ -75,18 +75,18 @@
 									Maximalstromstärke
 								</div>
 								<div class="col">
-									<span class="form-text small">Paramter in Ampere [A] für den maximalen Strom in allen Lademodi.
+									<span class="form-text small">Parameter in Ampere [A] für den maximalen Strom in allen Lademodi.
 										Definiert den maximalen Ladestrom an den Ladepunkten. Der größte einstellbare Wert liegt aus technischen Gründen bei 32 A.</span>
 								</div>
 							</div>
 						</div>
 						<div class="form-row mb-1">
-							<label for="maxEVSECurrentAllowed" class="col-4 col-sm-4 col-form-label">alle Ladepunkte</label>
+							<label for="maxEVSECurrentAllowed" class="col-md-4 col-form-label">alle Ladepunkte</label>
 							<div class="col-md-8">
 								<div class="form-row vaRow mb-1">
 									<label for="maxEVSECurrentAllowed" class="col-2 col-form-label valueLabel" suffix="A">A</label>
 									<div class="col-10">
-										<input type="range" class="form-control-range rangeInput" name="maxEVSECurrentAllowed" id="maxEVSECurrentAllowed" min="11" max="32" step="1" value="" data-default="32" data-topicprefix="openWB/config/get/global/">
+										<input type="range" class="form-control-range rangeInput" name="maxEVSECurrentAllowed" id="maxEVSECurrentAllowed" min="11" max="32" step="1" value="32" data-default="32" data-topicprefix="openWB/config/get/global/">
 									</div>
 								</div>
 							</div>
@@ -187,19 +187,22 @@
 		<!-- load topics -->
 		<script src = "settings/topicsToSubscribe_generalchargeconfig.js?ver=20200428-a" ></script>
 		<!-- load helper functions -->
-		<script src = "settings/helperFunctions.js?ver=20200505-a" ></script>
+		<script src = "settings/helperFunctions.js?ver=20201231" ></script>
 		<!-- load service -->
 		<script src = "settings/setupMqttServices.js?ver=20200505-a" ></script>
 		<!-- load mqtt handler-->
 		<script src = "settings/processAllMqttMsg.js?ver=20200505-a" ></script>
 
-		<script type="text/javascript">
+		<script>
 
-			$.get('settings/navbar.html', function(data){
-				$('#nav').replaceWith(data);
-				// disable navbar entry for current page
-				$('#navGeneralLadeeinstellungen').addClass('disabled');
-			});
+			$.get(
+				{ url: 'settings/navbar.html', cache: false },
+				function(data){
+					$('#nav').replaceWith(data);
+					// disable navbar entry for current page
+					$('#navGeneralLadeeinstellungen').addClass('disabled');
+				}
+			);
 			function visibiltycheck(elementId, mqttpayload) {
 				// do visiblity check here
 			}
