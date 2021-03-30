@@ -6,7 +6,7 @@ then
 	then
 		echo "test" > /dev/null
 	else
-		sudo socat pty,link=$mpm3pmllsource,raw tcp:$sdm630modbuslllanip:26 &
+		socat pty,link=$mpm3pmllsource,raw tcp:$sdm630modbuslllanip:26 &
 	fi
 else
 	echo "echo" > /dev/null

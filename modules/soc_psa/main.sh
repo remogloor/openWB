@@ -89,7 +89,7 @@ if (($soccalc == 0)); then #manual calculation not enabled, using existing logic
 		echo $timer > $soctimerfile
 	else
 		echo 0 > $soctimerfile
-		sudo python $MODULEDIR/psasoc.py $CHARGEPOINT $username $password $clientId $clientSecret $manufacturer $soccalc
+		python $MODULEDIR/psasoc.py $CHARGEPOINT $username $password $clientId $clientSecret $manufacturer $soccalc
 		if [[ $? != 0 ]]; then
 			socLog "Fetching SoC from $manufacturer failed"
 		fi
@@ -100,7 +100,7 @@ else	# manual calculation enabled, combining PSA module with manual calc method
 		socLog "Charging started. Fetching SoC from $manufacturer out of order."
 		soctimer=0
 		echo 0 > $soctimerfile
-		sudo python $MODULEDIR/psasoc.py $CHARGEPOINT $username $password $clientId $clientSecret $manufacturer $soccalc
+		python $MODULEDIR/psasoc.py $CHARGEPOINT $username $password $clientId $clientSecret $manufacturer $soccalc
 		if [[ $? == 0 ]]; then
 			echo $(<$psaSocFile) > $socFile
 			echo $(<$psaSocFile) > $manualSocFile
@@ -119,7 +119,7 @@ else	# manual calculation enabled, combining PSA module with manual calc method
 		else
 			socLog "Fetching SoC from $manufacturer"
 			echo 0 > $soctimerfile
-			sudo python $MODULEDIR/psasoc.py $CHARGEPOINT $username $password $clientId $clientSecret $manufacturer $soccalc
+			python $MODULEDIR/psasoc.py $CHARGEPOINT $username $password $clientId $clientSecret $manufacturer $soccalc
 			if [[ $? == 0 ]]; then
 				# if fetched SoC is equal from last used fetched SoC and car is plugged in
 				if [[ $(<$psaSocFile) == $(<$psaSocFile_last) ]] && [[ $(($(<$plugstat))) == 1 ]]; then

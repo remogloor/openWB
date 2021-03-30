@@ -6,12 +6,12 @@ then
 	then
 		echo "test" > /dev/null
 	else
-		sudo socat pty,link=$evsesources1,raw tcp:$evselanips1:26 &
+		socat pty,link=$evsesources1,raw tcp:$evselanips1:26 &
 	fi
 else
 	echo "echo" > /dev/null
 fi
-sudo python /var/www/html/openWB/modules/mpm3pmlls1/readmpm3pm.py $mpm3pmlls1source $mpm3pmlls1id
+python /var/www/html/openWB/modules/mpm3pmlls1/readmpm3pm.py $mpm3pmlls1source $mpm3pmlls1id
 
 
 

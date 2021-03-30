@@ -126,7 +126,7 @@ if (( soctimervalue < tmpintervall )); then
 else
 	socDebugLog "Requesting SoC"
 	echo 0 > $soctimerfile
-	sudo python3 $MODULEDIR/kiasoc.py $kia_email $kia_password $kia_pin $kia_vin $manualSocFile $socupdatetimefile >> $LOGFILE
+	python3 $MODULEDIR/kiasoc.py $kia_email $kia_password $kia_pin $kia_vin $manualSocFile $socupdatetimefile >> $LOGFILE
 	if ((soccalc == 0)); then
 		socDebugLog "Manual Calculation off - Applying Online SoC"
 		soc=$(<$manualSocFile)

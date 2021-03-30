@@ -33,5 +33,5 @@ socDebugLog(){
 }
 
 socDebugLog "Starting Python module"
-sudo python /var/www/html/openWB/modules/soc_leaf/soc.py $username $password $CHARGEPOINT
+python /var/www/html/openWB/modules/soc_leaf/soc.py $username $password $CHARGEPOINT
 socDebugLog "Done"

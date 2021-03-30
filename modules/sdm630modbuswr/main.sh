@@ -7,13 +7,13 @@ then
 	then
 		echo "test" > /dev/null
 	else
-		sudo socat pty,link=$sdm630modbuswrsource,raw tcp:$sdm630modbuswrlanip:26 &
+		socat pty,link=$sdm630modbuswrsource,raw tcp:$sdm630modbuswrlanip:26 &
 	fi
 else
 	echo "echo" > /dev/null
 fi
 n=0
-output=$(sudo python /var/www/html/openWB/modules/sdm630modbuswr/readsdm.py $sdm630modbuswrsource $sdm630modbuswrid)
+output=$(python /var/www/html/openWB/modules/sdm630modbuswr/readsdm.py $sdm630modbuswrsource $sdm630modbuswrid)
 while read -r line; do
 	if (( $n == 0 )); then
 		echo "$line" |  cut -c2- |sed 's/\..*$//' > /var/www/html/openWB/ramdisk/wra1

@@ -77,7 +77,7 @@ if (($soccalc == 0)); then #manual calculation not enabled, using existing logic
 		echo $timer > $soctimerfile
 	else
 		echo 0 > $soctimerfile
-		sudo python $MODULEDIR/opelsoc.py $CHARGEPOINT $username $password $clientId $clientSecret
+		python $MODULEDIR/opelsoc.py $CHARGEPOINT $username $password $clientId $clientSecret
 	fi
 else	# manual calculation enabled, combining PSA module with manual calc method
 	# if charging started this round fetch once from myOpel out of order
@@ -85,7 +85,7 @@ else	# manual calculation enabled, combining PSA module with manual calc method
 		socLog "Ladestatus changed to laedt. Fetching SoC from myOpel out of order."
 		soctimer=0
 		echo 0 > $soctimerfile
-		sudo python $MODULEDIR/opelsoc.py $CHARGEPOINT $username $password $clientId $clientSecret
+		python $MODULEDIR/opelsoc.py $CHARGEPOINT $username $password $clientId $clientSecret
 		echo $(<$socFile) > $manualSocFile
 		socLog "Fetched from myOpel: $(<$socFile)%"
 	fi
@@ -98,7 +98,7 @@ else	# manual calculation enabled, combining PSA module with manual calc method
 		else
 			socLog "Fetching SoC from myOpel"
 			echo 0 > $soctimerfile
-			sudo python $MODULEDIR/opelsoc.py $CHARGEPOINT $username $password $clientId $clientSecret
+			python $MODULEDIR/opelsoc.py $CHARGEPOINT $username $password $clientId $clientSecret
 			echo $(<$socFile) > $manualSocFile
 			socLog "Fetched from myOpel: $(<$socFile)%"
 		fi

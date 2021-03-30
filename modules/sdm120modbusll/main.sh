@@ -8,7 +8,7 @@ then
 	then
 		echo "test" > /dev/null
 	else
-		sudo socat pty,link=$sdm120modbusllsource,raw tcp:$sdm630modbuslllanip:26 &
+		socat pty,link=$sdm120modbusllsource,raw tcp:$sdm630modbuslllanip:26 &
 	fi
 else
 	echo "echo" > /dev/null
@@ -16,12 +16,12 @@ fi
 
 if [[ $sdm120modbusllid1 != "none" ]] && [[ $sdm120modbusllid2 != "254" ]] && [[ $sdm120modbusllid3 != "254" ]] ; then
 	n=0
-	output=$(sudo python /var/www/html/openWB/modules/sdm120modbusll/readsdm3.py $sdm120modbusllsource $sdm120modbusllid1 $sdm120modbusllid2 $sdm120modbusllid3)
+	output=$(python /var/www/html/openWB/modules/sdm120modbusll/readsdm3.py $sdm120modbusllsource $sdm120modbusllid1 $sdm120modbusllid2 $sdm120modbusllid3)
 
 else
 	if [[ $sdm120modbusllid2 != "254" ]] ; then
 			n=0
-		output=$(sudo python /var/www/html/openWB/modules/sdm120modbusll/readsdm2.py $sdm120modbusllsource $sdm120modbusllid1 $sdm120modbusllid2)
+		output=$(python /var/www/html/openWB/modules/sdm120modbusll/readsdm2.py $sdm120modbusllsource $sdm120modbusllid1 $sdm120modbusllid2)
 		while read -r line; do
 			if (( $n == 0 )); then
 				llv1=$(echo "$line" |  cut -c2- )
@@ -56,7 +56,7 @@ else
 			echo $llaktuell > /var/www/html/openWB/ramdisk/llaktuell
 		fi
 	else
-		sudo python /var/www/html/openWB/modules/sdm120modbusll/readsdm1.py $sdm120modbusllsource $sdm120modbusllid1
+		python /var/www/html/openWB/modules/sdm120modbusll/readsdm1.py $sdm120modbusllsource $sdm120modbusllid1
 
 	fi
 fi
