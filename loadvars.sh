@@ -76,7 +76,7 @@ loadvars(){
 
 			fi
 		fi
-		evseplugstate=$(sudo python runs/readmodbus.py $modbusevsesource $modbusevseid 1002 1)
+		evseplugstate=$(python runs/readmodbus.py $modbusevsesource $modbusevseid 1002 1)
 		if [ -z "${evseplugstate}" ] || ! [[ "${evseplugstate}" =~ $IsNumberRegex ]]; then
 			# EVSE read returned empty or non-numeric value --> use last state for this loop
 			evseplugstate=$(</var/www/html/openWB/ramdisk/evseplugstate)
@@ -117,7 +117,7 @@ loadvars(){
 		chargestat=$(<ramdisk/chargestat)
 	fi
 	if [[ $evsecon == "ipevse" ]]; then
-		evseplugstatelp1=$(sudo python runs/readipmodbus.py $evseiplp1 $evseidlp1 1002 1)
+		evseplugstatelp1=$(python runs/readipmodbus.py $evseiplp1 $evseidlp1 1002 1)
 		if [ -z "${evseplugstate}" ] || ! [[ "${evseplugstate}" =~ $IsNumberRegex ]]; then
 			evseplugstate=$(</var/www/html/openWB/ramdisk/evseplugstate)
 			openwbDebugLog "MAIN" 0 "IP EVSE read CP1 issue - using previous state '${evseplugstate}'"
@@ -140,7 +140,7 @@ loadvars(){
 	if [[ $lastmanagement == "1" ]]; then
 		ConfiguredChargePoints=2
 		if [[ $evsecons1 == "modbusevse" ]]; then
-			evseplugstatelp2=$(sudo python runs/readmodbus.py $evsesources1 $evseids1 1002 1)
+			evseplugstatelp2=$(python runs/readmodbus.py $evsesources1 $evseids1 1002 1)
 			if [ -z "${evseplugstatelp2}" ] || ! [[ "${evseplugstatelp2}" =~ $IsNumberRegex ]]; then
 				evseplugstatelp2=$(</var/www/html/openWB/ramdisk/evseplugstatelp2)
 				openwbDebugLog "MAIN" 0 "Modbus EVSE read CP2 issue - using previous state '${evseplugstatelp2}'"
@@ -174,7 +174,7 @@ loadvars(){
 			fi
 		fi
 		if [[ $evsecons1 == "slaveeth" ]]; then
-			evseplugstatelp2=$(sudo python runs/readslave.py 1002 1)
+			evseplugstatelp2=$(python runs/readslave.py 1002 1)
 			if [ -z "${evseplugstatelp2}" ] || ! [[ "${evseplugstatelp2}" =~ $IsNumberRegex ]]; then
 				evseplugstatelp2=$(</var/www/html/openWB/ramdisk/evseplugstatelp2)
 				openwbDebugLog "MAIN" 0 "Slaveeth EVSE read CP2 issue - using previous state '${evseplugstatelp2}'"
@@ -195,7 +195,7 @@ loadvars(){
 			fi
 		fi
 		if [[ $evsecons1 == "ipevse" ]]; then
-			evseplugstatelp2=$(sudo python runs/readipmodbus.py $evseiplp2 $evseidlp2 1002 1)
+			evseplugstatelp2=$(python runs/readipmodbus.py $evseiplp2 $evseidlp2 1002 1)
 			if [ -z "${evseplugstatelp2}" ] || ! [[ "${evseplugstatelp2}" =~ $IsNumberRegex ]]; then
 				evseplugstatelp2=$(</var/www/html/openWB/ramdisk/evseplugstatelp2)
 				openwbDebugLog "MAIN" 0 "IP EVSE read CP2 issue - using previous state '${evseplugstatelp2}'"
@@ -226,7 +226,7 @@ loadvars(){
 	if [[ $lastmanagements2 == "1" ]]; then
 		ConfiguredChargePoints=3
 		if [[ $evsecons2 == "ipevse" ]]; then
-			evseplugstatelp3=$(sudo python runs/readipmodbus.py $evseiplp3 $evseidlp3 1002 1)
+			evseplugstatelp3=$(python runs/readipmodbus.py $evseiplp3 $evseidlp3 1002 1)
 			if [ -z "${evseplugstatelp3}" ] || ! [[ "${evseplugstatelp3}" =~ $IsNumberRegex ]]; then
 				evseplugstatelp3=$(</var/www/html/openWB/ramdisk/evseplugstatelp3)
 				openwbDebugLog "MAIN" 0 "IP EVSE read CP3 issue - using previous state '${evseplugstatelp3}'"
@@ -249,7 +249,7 @@ loadvars(){
 
 
 		if [[ $evsecons2 == "modbusevse" ]]; then
-			evseplugstatelp3=$(sudo python runs/readmodbus.py $evsesources2 $evseids2 1002 1)
+			evseplugstatelp3=$(python runs/readmodbus.py $evsesources2 $evseids2 1002 1)
 			if [ -z "${evseplugstatelp3}" ] || ! [[ "${evseplugstatelp3}" =~ $IsNumberRegex ]]; then
 				evseplugstatelp3=$(</var/www/html/openWB/ramdisk/evseplugstatelp3)
 				openwbDebugLog "MAIN" 0 "Modbus EVSE read CP3 issue - using previous state '${evseplugstatelp3}'"
@@ -278,7 +278,7 @@ loadvars(){
 	if [[ $lastmanagementlp4 == "1" ]]; then
 		ConfiguredChargePoints=4
 		if [[ $evseconlp4 == "ipevse" ]]; then
-			evseplugstatelp4=$(sudo python runs/readipmodbus.py $evseiplp4 $evseidlp4 1002 1)
+			evseplugstatelp4=$(python runs/readipmodbus.py $evseiplp4 $evseidlp4 1002 1)
 			if [ -z "${evseplugstatelp4}" ] || ! [[ "${evseplugstatelp4}" =~ $IsNumberRegex ]]; then
 				# EVSE read returned empty or non-numeric value --> use last state for this loop
 				evseplugstatelp4=$(</var/www/html/openWB/ramdisk/evseplugstatelp4)
@@ -304,7 +304,7 @@ loadvars(){
 	if [[ $lastmanagementlp5 == "1" ]]; then
 		ConfiguredChargePoints=5
 		if [[ $evseconlp5 == "ipevse" ]]; then
-			evseplugstatelp5=$(sudo python runs/readipmodbus.py $evseiplp5 $evseidlp5 1002 1)
+			evseplugstatelp5=$(python runs/readipmodbus.py $evseiplp5 $evseidlp5 1002 1)
 			if [ -z "${evseplugstatelp5}" ] || ! [[ "${evseplugstatelp5}" =~ $IsNumberRegex ]]; then
 				# EVSE read returned empty or non-numeric value --> use last state for this loop
 				evseplugstatelp5=$(</var/www/html/openWB/ramdisk/evseplugstatelp5)
@@ -330,7 +330,7 @@ loadvars(){
 	if [[ $lastmanagementlp6 == "1" ]]; then
 		ConfiguredChargePoints=6
 		if [[ $evseconlp6 == "ipevse" ]]; then
-			evseplugstatelp6=$(sudo python runs/readipmodbus.py $evseiplp6 $evseidlp6 1002 1)
+			evseplugstatelp6=$(python runs/readipmodbus.py $evseiplp6 $evseidlp6 1002 1)
 			if [ -z "${evseplugstatelp6}" ] || ! [[ "${evseplugstatelp6}" =~ $IsNumberRegex ]]; then
 				# EVSE read returned empty or non-numeric value --> use last state for this loop
 				evseplugstatelp6=$(</var/www/html/openWB/ramdisk/evseplugstatelp6)
@@ -356,7 +356,7 @@ loadvars(){
 	if [[ $lastmanagementlp7 == "1" ]]; then
 		ConfiguredChargePoints=7
 		if [[ $evseconlp7 == "ipevse" ]]; then
-			evseplugstatelp7=$(sudo python runs/readipmodbus.py $evseiplp7 $evseidlp7 1002 1)
+			evseplugstatelp7=$(python runs/readipmodbus.py $evseiplp7 $evseidlp7 1002 1)
 			if [ -z "${evseplugstatelp7}" ] || ! [[ "${evseplugstatelp7}" =~ $IsNumberRegex ]]; then
 				# EVSE read returned empty or non-numeric value --> use last state for this loop
 				evseplugstatelp7=$(</var/www/html/openWB/ramdisk/evseplugstatelp7)
@@ -382,7 +382,7 @@ loadvars(){
 	if [[ $lastmanagementlp8 == "1" ]]; then
 		ConfiguredChargePoints=8
 		if [[ $evseconlp8 == "ipevse" ]]; then
-			evseplugstatelp8=$(sudo python runs/readipmodbus.py $evseiplp8 $evseidlp8 1002 1)
+			evseplugstatelp8=$(python runs/readipmodbus.py $evseiplp8 $evseidlp8 1002 1)
 			if [ -z "${evseplugstatelp8}" ] || ! [[ "${evseplugstatelp8}" =~ $IsNumberRegex ]]; then
 				# EVSE read returned empty or non-numeric value --> use last state for this loop
 				evseplugstatelp4=$(</var/www/html/openWB/ramdisk/evseplugstatelp8)
@@ -989,7 +989,7 @@ loadvars(){
 			openwbDebugLog "MAIN" 0 "loadvars read openWB/evu/WHExport_temp from mosquito $exporttemp"
 			echo $exporttemp > /var/www/html/openWB/ramdisk/bezugwatt0neg
 		fi
-		sudo python /var/www/html/openWB/runs/simcount.py $watt2 bezug bezugkwh einspeisungkwh
+		python /var/www/html/openWB/runs/simcount.py $watt2 bezug bezugkwh einspeisungkwh
 		importtemp1=$(</var/www/html/openWB/ramdisk/bezugwatt0pos)
 		exporttemp1=$(</var/www/html/openWB/ramdisk/bezugwatt0neg)
 		if [[ $importtemp !=  $importtemp1 ]]; then
@@ -1043,7 +1043,7 @@ loadvars(){
 			openwbDebugLog "MAIN" 0 "loadvars read openWB/pv/WHExport_temp from mosquito $exporttemp"
 			echo $exporttemp > /var/www/html/openWB/ramdisk/pvwatt0neg
 		fi
-		sudo python /var/www/html/openWB/runs/simcount.py $watt3 pv pvposkwh pvkwh
+		python /var/www/html/openWB/runs/simcount.py $watt3 pv pvposkwh pvkwh
 		importtemp1=$(</var/www/html/openWB/ramdisk/pvwatt0pos)
 		exporttemp1=$(</var/www/html/openWB/ramdisk/pvwatt0neg)
 		if [[ $importtemp !=  $importtemp1 ]]; then
@@ -1078,7 +1078,7 @@ loadvars(){
 			openwbDebugLog "MAIN" 0 "loadvars read openWB/housebattery/WHExport_temp from mosquito $exporttemp"
 			echo $exporttemp > /var/www/html/openWB/ramdisk/speicherwatt0neg
 		fi
-		sudo python /var/www/html/openWB/runs/simcount.py $watt2 speicher speicherikwh speicherekwh
+		python /var/www/html/openWB/runs/simcount.py $watt2 speicher speicherikwh speicherekwh
 		importtemp1=$(</var/www/html/openWB/ramdisk/speicherwatt0pos)
 		exporttemp1=$(</var/www/html/openWB/ramdisk/speicherwatt0neg)
 		if [[ $importtemp !=  $importtemp1 ]]; then
@@ -1113,7 +1113,7 @@ loadvars(){
 			openwbDebugLog "MAIN" 0 "loadvars read openWB/verbraucher/1/WHExport_temp from mosquito $exporttemp"
 			echo $exporttemp > /var/www/html/openWB/ramdisk/verbraucher1watt0neg
 		fi
-		sudo python /var/www/html/openWB/runs/simcount.py $watt3 verbraucher1 verbraucher1_wh verbraucher1_whe
+		python /var/www/html/openWB/runs/simcount.py $watt3 verbraucher1 verbraucher1_wh verbraucher1_whe
 		importtemp1=$(</var/www/html/openWB/ramdisk/verbraucher1watt0pos)
 		exporttemp1=$(</var/www/html/openWB/ramdisk/verbraucher1watt0neg)
 		if [[ $importtemp !=  $importtemp1 ]]; then

@@ -2,6 +2,7 @@
 RedirectMatch 404 \.conf$
 RedirectMatch 404 \.ini$
 RedirectMatch 404 \.py$
+RedirectMatch 404 \.sh$
 #<FilesMatch "\.(ini|conf|py|sh|json)$">
 #Order allow,deny
 #Deny from all
