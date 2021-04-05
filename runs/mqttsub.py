@@ -69,6 +69,18 @@ def getserial():
                 return line[10:26]
         return "0000000000000000"
 
+def verifyAdminToken(msg):
+    token = str(msg.payload.decode("utf-8"))
+    expectedToekn = ""
+    with open('/var/www/html/openWB/ramdisk/admin.token', 'r') as file:
+        expectedToken = file.read().replace('\n', '')
+
+    file = open('/var/www/html/openWB/ramdisk/mqtt.log', 'a')
+    file.write( "Token: %s Expected Token: %s\n" % (token, expectedToken) )
+    file.close()
+
+    return token == expectedToken
+
 mqtt_broker_ip = "localhost"
 client = mqtt.Client("openWB-mqttsub-" + getserial())
 ipallowed='^[0-9.]+$'
@@ -762,6 +774,9 @@ def on_message(client, userdata, msg):
         if (msg.topic == "openWB/set/system/reloadDisplay"):
             if (int(msg.payload) >= 0 and int(msg.payload) <= 1):
                 client.publish("openWB/system/reloadDisplay", msg.payload.decode("utf-8"), qos=0, retain=True)
+        if (msg.topic == "openWB/set/system/reboot"):
+            if verifyAdminToken(msg):
+                subprocess.Popen('/var/www/html/openWB/runs/reboot.sh')
         if (msg.topic == "openWB/config/set/releaseTrain"):
             if ( msg.payload.decode("utf-8") == "stable17" or msg.payload.decode("utf-8") == "master" or msg.payload.decode("utf-8") == "beta" or msg.payload.decode("utf-8").startswith("yc/")):
                 sendcommand = ["/var/www/html/openWB/runs/replaceinconfig.sh", "releasetrain=", msg.payload.decode("utf-8")]
