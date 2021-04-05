@@ -53,16 +53,14 @@
 						case 'create':
 							// setup password protection
 							// generate necessary files and set proper permissions
-							exec( 'sudo touch ' . $passwordfile . ' ' . $authfile . ' ' . $tempfile );
-							exec( 'sudo chown pi:pi ' . $passwordfile . ' ' . $authfile . ' ' . $tempfile );
-							exec( 'sudo chmod 666 ' . $passwordfile . ' ' . $authfile . ' ' . $tempfile );
+							exec( 'touch ' . $passwordfile . ' ' . $authfile . ' ' . $tempfile );
 							// save password in file
 							// no need to worry about special characters
 							file_put_contents( $tempfile, $_POST['password'] );
 							// generate password hash
-							exec( 'sudo htpasswd -i -c ' . $passwordfile . ' ' . $_POST['username'] . ' < ' . $tempfile );
+							exec( 'htpasswd -i -c ' . $passwordfile . ' ' . $_POST['username'] . ' < ' . $tempfile );
 							// remove temp password file
-							exec( 'sudo rm ' . $tempfile );
+							exec( 'rm ' . $tempfile );
 							// write .htaccess file
 							$htaccessFile = fopen( $authfile, 'w');
 							fwrite( $htaccessFile, <<<AUTHEND
@@ -78,7 +76,7 @@ AUTHEND
 							);
 							fclose( $htaccessFile );
 							// protect .htaccess file
-							exec( 'sudo chmod 644 ' . $passwordfile . ' ' . $authfile );
+							exec( 'chmod 600 ' . $passwordfile . ' ' . $authfile );
 							?>
 							<div class="col alert alert-success" role="alert">
 								Passwortschutz wurde eingerichtet.
@@ -89,10 +87,10 @@ AUTHEND
 							// remove password protection
 							// simply delete both files
 							if( file_exists( $authfile )){
-								exec( 'sudo rm ' . $authfile );
+								exec( 'rm ' . $authfile );
 							}
 							if( file_exists( $passwordfile )){
-								exec( 'sudo rm ' . $passwordfile );
+								exec( 'rm ' . $passwordfile );
 							}
 							?>
 							<div class="col alert alert-danger" role="alert">
