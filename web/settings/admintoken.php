@@ -15,4 +15,10 @@ function GetAdminToken()
 	file_put_contents('/var/www/html/openWB/ramdisk/admin.token', $token);
 	return $token;
 }
+
+function PublishWithAdminToken($topic, $payload)
+{
+	$token = GetAdminToken();
+	exec( 'mosquitto_pub -t ' . $topic . ' -m \'{ "token": "' . $token . '", "payload": "' . $payload . '"}\'' );
+}
 ?>

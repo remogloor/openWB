@@ -48,8 +48,8 @@
 				switch( $_POST['action'] ){
 					case 'rename':
 						// change hostname
-						$cmd = "sudo /var/www/html/openWB/runs/sethostname.sh " . escapeshellarg( $_POST['hostname'] );
-						exec( $cmd, $output, $returnval );
+						include 'admintoken.php';
+						PublishWithAdminToken('openWB/set/system/hostname', $_POST['hostname']);
 						?>
 						<div class="col alert alert-success" role="alert">
 							Der Hostname wurde geändert auf '<?php echo $_POST['hostname']; ?>'.<br>
